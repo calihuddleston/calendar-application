@@ -60,7 +60,6 @@ $('button').on('click', function (e) {
     var scheduledItems = JSON.parse(localStorage.getItem("dailySchedule") || "{}"); //looking for 'dailySchedule' if not there returns empty object
     scheduledItems[currentHour] = text;
     localStorage.setItem('dailySchedule', JSON.stringify(scheduledItems));
-
   })
 
 
