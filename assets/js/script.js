@@ -4,13 +4,10 @@ const container = $('.container');
 
 // inserts current date to calendar
 calendarDay.text("Today is: " + time);
-localStorage.getItem('schedule')
 
-let schedulePlanner = JSON.parse(localStorage.getItem('schedule'));
 renderHours();
+
 // creates time blocks
-
-
 function renderHours () {
     var scheduledItems = JSON.parse(localStorage.getItem("dailySchedule") || "{}");
     for (let i = 9; i <= 17; i++){
@@ -34,13 +31,11 @@ function renderHours () {
     }
 };
 
+// create class for past, present, future based on current time
 function checkTime () {
     let currentTime = moment().hour();
-// what is this looping over? 
-    $('.container').each(() => {
-        let hour = $('.container').children();
-        console.log(hour);
-
+    let hour = $('.container').children();
+    hour.each(() => {
         if (hour < currentTime) {
             $('textarea').removeClass(['present', 'future']).addClass('past');
         } else if (hour === currentTime) {
@@ -50,7 +45,8 @@ function checkTime () {
        }
   })
 }
-    
+
+// save textarea text to local storage when the save button is clicked
 $('button').on('click', function (e) {
     e.preventDefault();
     var text = $(this).siblings()[1].value;
